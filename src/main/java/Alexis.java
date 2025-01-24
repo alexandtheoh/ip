@@ -97,7 +97,7 @@ public class Alexis {
             if (actionsEnum.list.name().equalsIgnoreCase(input)) {
                 if (tasks.size() > 0) {
                     int counter = 1;
-                    System.out.println(line);
+                    System.out.println(line + "Here are the tasks in your list:");
                     for (Task task : tasks) {
                         System.out.println(counter + "." + task.toString());
                         counter++;

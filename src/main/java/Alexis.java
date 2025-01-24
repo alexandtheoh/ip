@@ -17,7 +17,7 @@ public class Alexis {
         String line = "____________________________________________________________\n";
         tasks.add(task);
 
-        return line + "Got it. I've added this task: ]\n"
+        return line + "Got it. I've added this task: \n"
                 + task.toString() + "\nNow you have " + tasks.size() + " tasks in the list.\n"
                     + line;
     }
@@ -69,6 +69,18 @@ public class Alexis {
 
                         System.out.println(line + "OK, I've marked this task as not done yet:\n" +
                                 task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
+                        continue;
+                    }
+                } else if ("delete".equalsIgnoreCase(words[0]) && isInteger(words[1])) {
+                    int pos = Integer.parseInt(words[1]);
+                    // pos is greater than array length
+                    if (pos <= tasks.size() && pos > 0)  {
+                        Task task = tasks.get(pos - 1);
+                        tasks.remove(pos - 1);
+
+                        System.out.println(line + "Noted. I've removed this task: \n"
+                                + task.toString() + "\nNow you have " + tasks.size() + " tasks in the list.\n"
+                                + line);
                         continue;
                     }
                 }

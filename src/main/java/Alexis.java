@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,15 @@ public class Alexis {
         } catch (NumberFormatException e) {
             return false; // Parsing failed
         }
+    }
+
+    public static String addTask(List<Task> tasks, Task task) {
+        String line = "____________________________________________________________\n";
+        tasks.add(task);
+
+        return line + "Got it. I've added this task: ]\n"
+                + task.toString() + "\nNow you have " + tasks.size() + " tasks in the list.\n"
+                    + line;
     }
     public static void main(String[] args) {
         // create list
@@ -70,15 +80,42 @@ public class Alexis {
                     int counter = 1;
                     System.out.println(line);
                     for (Task task : tasks) {
-                        System.out.println(counter + "." + task.getStatusIcon() + " " + task.getDescription());
+                        System.out.println(counter + "." + task.toString());
                         counter++;
                     }
                     System.out.println(line);
                 }
-            } else {
-                // Echo the input back to the user
-                tasks.add(new Task(input));
-                System.out.println(line + "added: " + input + "\n" + line);
+            } else { // add task
+                String[] taskString = input.split("/");
+                String[] desArr = taskString[0].split(" ");
+                String taskType = desArr[0];
+                String description = String.join(" ", Arrays.copyOfRange(desArr, 1, desArr.length));
+
+                if ("todo".equalsIgnoreCase(taskType)) {
+                    try {
+                        Task todo = new Todo(description);
+                        System.out.println(addTask(tasks, todo));
+                    } catch(Exception e) {
+                        System.out.println(line + e.getMessage() + "\n" + line);
+                    }
+                } else if ("deadline".equalsIgnoreCase(taskType)) {
+                    String[] byArr = taskString[1].split(" ");
+                    String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
+
+                    Task deadline = new Deadline(description, by);
+                    System.out.println(addTask(tasks, deadline));
+                } else if ("event".equalsIgnoreCase(taskType)) {
+                    String[] fromArr = taskString[1].split(" ");
+                    String from = String.join(" ", Arrays.copyOfRange(fromArr, 1, fromArr.length));
+
+                    String[] toArr = taskString[2].split(" ");
+                    String to = String.join(" ", Arrays.copyOfRange(toArr, 1, toArr.length));
+
+                    Task event = new Event(description, from, to);
+                    System.out.println(addTask(tasks, event));
+                } else {
+                    System.out.println(line + "Invalid command.\n" + line);
+                }
             }
         }
 

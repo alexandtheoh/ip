@@ -22,4 +22,16 @@ public class Task {
     public void unmark() {
         isDone = false;
     }
+
+    public String getDate() {
+        return "";
+    }
+
+    public String getType() {
+        return "";
+    }
+
+    public String toString() {
+        return "";
+    }
 }

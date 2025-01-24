@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Alexis {
+    public enum taskTypeEnum {
+        todo, deadline, event
+    }
     public static boolean isInteger(String str) {
         try {
             Integer.parseInt(str); // Attempt to parse the string
@@ -103,7 +106,7 @@ public class Alexis {
                 String taskType = desArr[0];
                 String description = String.join(" ", Arrays.copyOfRange(desArr, 1, desArr.length));
 
-                if ("todo".equalsIgnoreCase(taskType)) {
+                if (taskTypeEnum.todo.name().equalsIgnoreCase(taskType)) {
                     try {
                         Task todo = new Todo(description);
                         System.out.println(addTask(tasks, todo));
@@ -116,7 +119,17 @@ public class Alexis {
 
                     Task deadline = new Deadline(description, by);
                     System.out.println(addTask(tasks, deadline));
-                } else if ("event".equalsIgnoreCase(taskType)) {
+                }
+                // Handle 'deadline' task type
+                else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
+                    String[] byArr = taskString[1].split(" ");
+                    String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
+
+                    Task deadline = new Deadline(description, by);
+                    System.out.println(addTask(tasks, deadline));
+                }
+                // Handle 'event' task type
+                else if (taskTypeEnum.event.name().equalsIgnoreCase(taskType)) {
                     String[] fromArr = taskString[1].split(" ");
                     String from = String.join(" ", Arrays.copyOfRange(fromArr, 1, fromArr.length));
 
@@ -125,7 +138,9 @@ public class Alexis {
 
                     Task event = new Event(description, from, to);
                     System.out.println(addTask(tasks, event));
-                } else {
+                }
+                // Invalid task type
+                else {
                     System.out.println(line + "Invalid command.\n" + line);
                 }
             }

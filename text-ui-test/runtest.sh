@@ -26,6 +26,9 @@ java -classpath ../bin Alexis < input.txt > ACTUAL.TXT
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
+sed -i '' 's/[[:space:]]*$//' ACTUAL.TXT
+sed -i '' 's/[[:space:]]*$//' EXPECTED.TXT
+
 # compare the output to the expected output
 diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]

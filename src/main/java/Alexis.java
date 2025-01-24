@@ -7,6 +7,10 @@ public class Alexis {
     public enum taskTypeEnum {
         todo, deadline, event
     }
+
+    public enum actionsEnum {
+        bye, add , list, mark, unmark, delete
+    }
     public static boolean isInteger(String str) {
         try {
             Integer.parseInt(str); // Attempt to parse the string
@@ -42,7 +46,7 @@ public class Alexis {
             String input = scanner.nextLine();
 
             // Exit condition
-            if ("bye".equalsIgnoreCase(input)) {
+            if (actionsEnum.bye.name().equalsIgnoreCase(input)) {
                 System.out.println(line+ "Bye. Hope to see you again soon!\n" + line);
                 break;
             }
@@ -52,7 +56,7 @@ public class Alexis {
 
             if (words.length == 2) {
                 // mark
-                if ("mark".equalsIgnoreCase(words[0]) && isInteger(words[1])) {
+                if (actionsEnum.mark.name().equalsIgnoreCase(words[0]) && isInteger(words[1])) {
                     int pos = Integer.parseInt(words[1]);
                     // pos is greater than array length
                     if (pos <= tasks.size() && pos > 0)  {
@@ -63,7 +67,7 @@ public class Alexis {
                                 task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
                         continue;
                     }
-                } else if ("unmark".equalsIgnoreCase(words[0]) && isInteger(words[1])) {
+                } else if (actionsEnum.unmark.name().equalsIgnoreCase(words[0]) && isInteger(words[1])) {
                     int pos = Integer.parseInt(words[1]);
                     // pos is greater than array length
                     if (pos <= tasks.size() && pos > 0)  {
@@ -74,7 +78,7 @@ public class Alexis {
                                 task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
                         continue;
                     }
-                } else if ("delete".equalsIgnoreCase(words[0]) && isInteger(words[1])) {
+                } else if (actionsEnum.delete.name().equalsIgnoreCase(words[0]) && isInteger(words[1])) {
                     int pos = Integer.parseInt(words[1]);
                     // pos is greater than array length
                     if (pos <= tasks.size() && pos > 0)  {
@@ -90,7 +94,7 @@ public class Alexis {
             }
 
             // display list condition
-            if ("list".equalsIgnoreCase(input)) {
+            if (actionsEnum.list.name().equalsIgnoreCase(input)) {
                 if (tasks.size() > 0) {
                     int counter = 1;
                     System.out.println(line);

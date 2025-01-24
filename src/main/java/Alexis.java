@@ -37,7 +37,7 @@ public class Alexis {
 
         String line = "____________________________________________________________\n";
         // intro line
-        System.out.println(line + "Hello! I'm [YOUR CHATBOT NAME]\n" +
+        System.out.println(line + "Hello! I'm Alexis\n" +
                 "What can I do for you?\n" + line);
 
         // Infinite loop to continuously echo input
@@ -117,13 +117,6 @@ public class Alexis {
                     } catch(Exception e) {
                         System.out.println(line + e.getMessage() + "\n" + line);
                     }
-                } else if ("deadline".equalsIgnoreCase(taskType)) {
-                    String[] byArr = taskString[1].split(" ");
-                    String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
-
-                    Task deadline = new Deadline(description, by);
-                    System.out.println(addTask(tasks, deadline));
-                }
                 // Handle 'deadline' task type
                 else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
                     String[] byArr = taskString[1].split(" ");

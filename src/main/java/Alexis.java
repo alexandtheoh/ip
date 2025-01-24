@@ -114,9 +114,10 @@ public class Alexis {
                     try {
                         Task todo = new Todo(description);
                         System.out.println(addTask(tasks, todo));
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         System.out.println(line + e.getMessage() + "\n" + line);
                     }
+                }
                 // Handle 'deadline' task type
                 else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
                     String[] byArr = taskString[1].split(" ");

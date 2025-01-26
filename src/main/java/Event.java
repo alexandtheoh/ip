@@ -2,8 +2,8 @@ public class Event extends Task {
     protected String type = "[E]";
     protected String start;
     protected String end;
-    public Event(String description, String start, String end) {
-        super(description);
+    public Event(String isDone, String description, String start, String end) {
+        super(isDone, description);
         this.start = start;
         this.end = end;
     }
@@ -21,5 +21,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         return type + this.getStatusIcon() + " " + description + " (from:" + start + " to: " + end + ")";
+    }
+
+    @Override
+    public String toSaveString() {
+        return "T|" + this.getStatusString() + "|" + this.description + "|" + this.start + "|" + this.end;
     }
 }

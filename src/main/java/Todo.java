@@ -1,7 +1,7 @@
 public class Todo extends Task {
     protected String type = "[T]";
-    public Todo(String description) throws Exception {
-        super(description);
+    public Todo(String isDone, String description) throws Exception {
+        super(isDone, description);
         if ("".equals(description)) {
             throw new ToDoException();
         }
@@ -15,5 +15,10 @@ public class Todo extends Task {
     @Override
     public String toString() {
         return type + this.getStatusIcon() + " " + description;
+    }
+
+    @Override
+    public String toSaveString() {
+        return "T|" + this.getStatusString() + "|" + this.description;
     }
 }

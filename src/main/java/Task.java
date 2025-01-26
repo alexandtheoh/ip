@@ -3,9 +3,13 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    public Task(String isDone, String description) {
         this.description = description;
-        this.isDone = false;
+        if (isDone.equals("0")) {
+            this.isDone = false;
+        } else {
+            this.isDone = true;
+        }
     }
 
     public String getDescription() {
@@ -14,6 +18,10 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
+    }
+
+    public String getStatusString() {
+        return (isDone ? "1" : "0"); // mark done task with X
     }
 
     public void mark() {
@@ -32,6 +40,10 @@ public class Task {
     }
 
     public String toString() {
+        return "";
+    }
+
+    public String toSaveString() {
         return "";
     }
 }

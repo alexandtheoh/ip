@@ -1,7 +1,4 @@
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Alexis {
     protected static String line = "____________________________________________________________\n";
@@ -40,7 +37,6 @@ public class Alexis {
             if (words.length == 2) {
                 System.out.println(save.performAction(input));
             }
-
             // display list condition
             else if (actionsEnum.list.name().equalsIgnoreCase(input)) {
                 System.out.println(save.toString());

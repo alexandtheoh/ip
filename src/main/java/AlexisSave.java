@@ -24,7 +24,7 @@ public class AlexisSave {
         tasks = new ArrayList<>();
     }
 
-    public static boolean isInteger(String str) {
+    private static boolean isInteger(String str) {
         try {
             Integer.parseInt(str); // Attempt to parse the string
             return true; // Parsing succeeded

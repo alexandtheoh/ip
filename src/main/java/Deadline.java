@@ -1,9 +1,9 @@
 public class Deadline extends Task {
     protected String type = "[D]";
-    protected String by;
+    protected TaskDate by;
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = new TaskDate(by);
     }
 
     @Override
@@ -13,11 +13,11 @@ public class Deadline extends Task {
 
     @Override
     public String getDate() {
-        return "(by: " + by + ")";
+        return "(by: " + by.toString() + ")";
     }
 
     @Override
     public String toString() {
-        return type + this.getStatusIcon() + " " + description + " (by: " + by + ")";
+        return type + this.getStatusIcon() + " " + description + " (by: " + by.toString() + ")";
     }
 }

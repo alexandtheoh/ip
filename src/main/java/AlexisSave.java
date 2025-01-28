@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 

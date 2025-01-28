@@ -26,6 +26,6 @@ public class Event extends Task {
 
     @Override
     public String toSaveString() {
-        return "T|" + this.getStatusString() + "|" + this.description + "|" + this.start + "|" + this.end;
+        return "E|" + this.getStatusString() + "|" + this.description + "|" + this.start + "|" + this.end;
     }
 }

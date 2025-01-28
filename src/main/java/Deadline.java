@@ -24,6 +24,6 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveString() {
-        return "T|" + this.getStatusString() + "|" + this.description + "|" + this.by;
+        return "D|" + this.getStatusString() + "|" + this.description + "|" + this.by;
     }
 }

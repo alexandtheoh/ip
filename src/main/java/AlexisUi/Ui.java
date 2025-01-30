@@ -1,3 +1,14 @@
+package AlexisUi;
+
+import Tasks.Todo;
+import Tasks.Deadline;
+import Tasks.Event;
+import Tasks.Task;
+import Tasks.Storage;
+import Tasks.TasksList;
+
+import AlexisExceptions.InvalidPosException;
+
 import java.util.Arrays;
 import java.util.Scanner;
 public class Ui {
@@ -5,7 +16,7 @@ public class Ui {
     public static String invalid = line + "Invalid command.\n" + line;
 
     private enum taskTypeEnum {
-        T, D, E, todo, deadline, event
+        todo, deadline, event
     }
 
     private enum actionsEnum {
@@ -71,7 +82,7 @@ public class Ui {
                         } catch (InvalidPosException e) {
                             System.out.println(Ui.invalid);
                         }
-                    } else if (AlexisSave.actionsEnum.delete.name().equalsIgnoreCase(words[0])) {
+                    } else if (actionsEnum.delete.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);
                         try {
                             Task task = tasksList.deleteTask(pos);

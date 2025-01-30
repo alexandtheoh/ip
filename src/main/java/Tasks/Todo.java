@@ -1,3 +1,7 @@
+package Tasks;
+
+import AlexisExceptions.ToDoException;
+
 public class Todo extends Task {
     protected String type = "[T]";
     public Todo(String isDone, String description) throws Exception {

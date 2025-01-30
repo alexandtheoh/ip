@@ -3,4 +3,3 @@ T|1|return book
 T|1|do homework
 T|0|borrow book
 D|0|return book|Sunday
-E|1|project meeting|Dec 1 2019|Dec 9 2019

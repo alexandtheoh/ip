@@ -122,6 +122,7 @@ public class Ui {
                     else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
                         String[] byArr = taskString[1].split(" ");
                         String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
+                        System.out.println("description");
 
                         task = new Deadline("0", description, by);
                         this.tasksList.addTask(task);

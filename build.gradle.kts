@@ -1,6 +1,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    java
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 repositories {
@@ -56,6 +58,11 @@ tasks.test {
         showStackTraces = true
         showStandardStreams = false
     }
+}
+
+tasks.shadowJar {
+    archiveFileName.set("alexis.jar")
+    destinationDirectory.set(file("$buildDir/libs"))
 }
 
 

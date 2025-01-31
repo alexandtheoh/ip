@@ -69,7 +69,7 @@ public class Ui {
                 if (actionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
                     String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
                     System.out.println(line + "Here are the matching tasks in your list:\n" +
-                            this.tasksList.search(searchString) + line);
+                            this.tasksList.search(searchString) + line  qq);
                 } else if (words.length == 2 && isInteger(words[1])) {  // case of mark/unmark/delete
                     if (actionsEnum.mark.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);

@@ -24,6 +24,11 @@ public class Deadline extends Task {
         return type + this.getStatusIcon() + " " + description + " (by: " + by.toString() + ")";
     }
 
+    /**
+     * Returns a string representation of the Deadline.
+     *
+     * @return Formatted task with completion status.
+     */
     @Override
     public String toSaveString() {
         return "D|" + this.getStatusString() + "|" + this.description + "|" + this.by;

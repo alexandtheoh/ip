@@ -12,10 +12,22 @@ public class TasksList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Adds Task to task list
+     *
+     * @param task is the task to be added
+     */
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the list
+     *
+     * @param is the position of the task to be deleted, InvalidPosException is thrown if pos is out of bounds
+     *
+     * @return is the task which was deleted
+     */
     public Task deleteTask(int pos) throws InvalidPosException {
         if (pos <= this.tasks.size() && pos > 0) {
             Task task = this.tasks.get(pos - 1);
@@ -27,6 +39,13 @@ public class TasksList {
         }
     }
 
+    /**
+     * Marks a task from the list
+     *
+     * @param is the position of the task to be marked, InvalidPosException is thrown if pos is out of bounds
+     *
+     * @return is the task which was marked
+     */
     public Task markTask(int pos) throws InvalidPosException {
         if (pos <= this.tasks.size() && pos > 0) {
             Task task = this.tasks.get(pos - 1);
@@ -37,6 +56,14 @@ public class TasksList {
         }
 
     }
+
+    /**
+     * Unmarks a task from the list
+     *
+     * @param is the position of the task to be unmarked, InvalidPosException is thrown if pos is out of bounds
+     *
+     * @return is the task which was unmarked
+     */
     public Task unmarkTask(int pos) throws InvalidPosException {
         if (pos <= this.tasks.size() && pos > 0) {
             Task task = this.tasks.get(pos - 1);
@@ -49,6 +76,11 @@ public class TasksList {
 
     }
 
+    /**
+     * Returns a string representation of the TaskList to be used for the save file.
+     *
+     * @return Formatted task with completion status and date.
+     */
     public String toSaveString() {
         StringBuilder taskSave = new StringBuilder();
         for (Task task : this.tasks) {

@@ -1,5 +1,10 @@
 package Tasks;
 
+/**
+ * Represents a task.
+ * A {@code Task} can be marked as completed or not and has a decription.
+ */
+
 public class Task {
     protected String description;
     protected boolean isDone;

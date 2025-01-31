@@ -26,6 +26,11 @@ public class Event extends Task {
         return type + this.getStatusIcon() + " " + description + " (from:" + start.toString() + " to: " + end.toString() + ")";
     }
 
+    /**
+     * Returns a string representation of the Event.
+     *
+     * @return Formatted task with completion status.
+     */
     @Override
     public String toSaveString() {
         return "E|" + this.getStatusString() + "|" + this.description + "|" + this.start + "|" + this.end;

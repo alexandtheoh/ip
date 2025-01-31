@@ -10,8 +10,8 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     // This dependency is used by the application.
     implementation(libs.guava)
 }
@@ -38,4 +38,24 @@ sourceSets {
             setSrcDirs(files("src"))  // Use the `files()` method to wrap paths as File objects
         }
     }
+    test {
+        java {
+            srcDir("test/java")  // Add this to include the custom test folder
+        }
+    }
 }
+
+tasks.test {
+    useJUnitPlatform()
+
+    testLogging {
+        events("passed", "skipped", "failed")
+        showExceptions = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL  // Use the correct enum
+        showCauses = true
+        showStackTraces = true
+        showStandardStreams = false
+    }
+}
+
+

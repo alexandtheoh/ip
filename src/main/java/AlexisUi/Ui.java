@@ -92,6 +92,9 @@ public class Ui {
                         } catch (InvalidPosException e) {
                             System.out.println(Ui.invalid);
                         }
+                    } else {
+                        System.out.println(Ui.invalid);
+                        continue;
                     }
                 }
                 // display list condition
@@ -112,6 +115,7 @@ public class Ui {
                             this.tasksList.addTask(task);
                         } catch (Exception e) {
                             System.out.println(line + e.getMessage() + "\n" + line);
+                            continue;
                         }
                     }
                     // Handle 'deadline' task type
@@ -141,7 +145,7 @@ public class Ui {
 
                     // print task added message
                     System.out.println(line + "Got it. I've added this task: \n"
-                            + task.toString() + "\nNow you have " + this.tasksList.getSize() + " tasks in the list.\n"
+                            + task + "\nNow you have " + this.tasksList.getSize() + " tasks in the list.\n"
                             + line);
                 }
             }

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Storage {
     private enum taskTypeEnum {
-        T, D, E, todo
+        T, D, E
     }
 
     private String filePath;

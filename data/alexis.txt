@@ -1,5 +1,5 @@
 T|1|borrow book
-T|1|return book
+T|0|return book
 T|1|do homework
 T|0|borrow book
-D|0|return book|Sunday
+D|1|return book|Sunday

@@ -49,7 +49,7 @@ public class Ui {
                 "What can I do for you?\n" + line);
 
         // Infinite loop to continuously echo input
-        while (true) {
+        while (scanner.hasNextLine()) {
             // Prompt the user for input
             String input = scanner.nextLine();
 

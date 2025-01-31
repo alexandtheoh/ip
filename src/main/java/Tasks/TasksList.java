@@ -102,6 +102,25 @@ public class TasksList {
         return taskList.toString();
     }
 
+    /**
+     * Returns all the tasks which match the search string
+     *
+     * @return task list matching search string
+     */
+    public String search(String searchString) {
+        StringBuilder searchList = new StringBuilder();
+        int counter = 1;
+
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(searchString)) {
+                searchList.append(counter).append(".").append(task.toString()).append("\n");
+                counter++;
+            }
+        }
+
+        return searchList.toString();
+    }
+
     public int getSize() {
         return this.tasks.size();
     }

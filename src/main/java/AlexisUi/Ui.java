@@ -20,7 +20,7 @@ public class Ui {
     }
 
     private enum actionsEnum {
-        mark, unmark, delete, bye, list
+        mark, unmark, delete, bye, list, search
     }
 
     private Storage storage;
@@ -56,15 +56,22 @@ public class Ui {
             // Exit condition
             if (actionsEnum.bye.name().equalsIgnoreCase(input)) {
                 storage.save();
-                System.out.println(line+ "Bye. Hope to see you again soon!\n" + line);
+                System.out.println(line + "Bye. Hope to see you again soon!\n" + line);
                 break;
+                // display list condition
+            } else if (actionsEnum.list.name().equalsIgnoreCase(input)) {
+                    System.out.println(line + "Here are the tasks in your list:\n" +
+                            this.tasksList.toString() + line);
             } else {
                 // mark/unmark condition
                 String[] words = input.split(" ");
 
-                // case of mark/unmark/delete
-                if (words.length == 2 && isInteger(words[1])) {
-                    if (actionsEnum.mark.name().equalsIgnoreCase(words[0]) ) {
+                if (actionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
+                    String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
+                    System.out.println(line + "Here are the matching tasks in your list:\n" +
+                            this.tasksList.search(searchString) + line  qq);
+                } else if (words.length == 2 && isInteger(words[1])) {  // case of mark/unmark/delete
+                    if (actionsEnum.mark.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);
                         try {
                             Task task = tasksList.markTask(pos);
@@ -96,11 +103,6 @@ public class Ui {
                         System.out.println(Ui.invalid);
                         continue;
                     }
-                }
-                // display list condition
-                else if (actionsEnum.list.name().equalsIgnoreCase(input)) {
-                    System.out.println(line + "Here are the tasks in your list:\n" +
-                            this.tasksList.toString() + line);
                 } else { // add task
                     String[] taskString = input.split("/");
                     String[] desArr = taskString[0].split(" ");
@@ -122,7 +124,6 @@ public class Ui {
                     else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
                         String[] byArr = taskString[1].split(" ");
                         String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
-                        System.out.println("description");
 
                         task = new Deadline("0", description, by);
                         this.tasksList.addTask(task);

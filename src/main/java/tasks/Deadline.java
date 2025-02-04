@@ -1,9 +1,17 @@
-package Tasks;
+package tasks;
 
+/**
+ * Represents a deadline
+ * A {@code Deadline} extends Task class and contains an do by date
+ */
 public class Deadline extends Task {
-    protected String type = "[D]";
+    private String type = "[D]";
+    private TaskDate by;
 
-    protected TaskDate by;
+
+    /**
+     * Creates a Deadline
+     */
     public Deadline(String isDone, String description, String by) {
         super(isDone, description);
         this.by = new TaskDate(by);

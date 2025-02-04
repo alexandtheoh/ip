@@ -1,4 +1,4 @@
-package Tasks;
+package tasks;
 
 /**
  * Represents a task.
@@ -9,6 +9,12 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a Task
+     *
+     * @param isDone "0" represents an undone task anything else means the task is complete
+     * @param description is a string description of the task
+     */
     public Task(String isDone, String description) {
         this.description = description;
         if (isDone.equals("0")) {

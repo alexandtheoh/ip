@@ -1,31 +1,39 @@
-package AlexisUi;
-
-import Tasks.Todo;
-import Tasks.Deadline;
-import Tasks.Event;
-import Tasks.Task;
-import Tasks.Storage;
-import Tasks.TasksList;
-
-import AlexisExceptions.InvalidPosException;
+package alexis.ui;
 
 import java.util.Arrays;
 import java.util.Scanner;
-public class Ui {
-    public static String line = "____________________________________________________________\n";
-    public static String invalid = line + "Invalid command.\n" + line;
 
-    private enum taskTypeEnum {
+import alexis.exceptions.InvalidPosException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Storage;
+import tasks.Task;
+import tasks.TasksList;
+import tasks.Todo;
+
+
+/**
+ * Represents a UI for alexis
+ * A {@code Ui} responsible for handling user input and alexis output
+ */
+public class Ui {
+    private static String line = "____________________________________________________________\n";
+    private static String invalid = line + "Invalid command.\n" + line;
+
+    private enum TaskTypeEnum {
         todo, deadline, event
     }
 
-    private enum actionsEnum {
+    private enum ActionsEnum {
         mark, unmark, delete, bye, list, search
     }
 
     private Storage storage;
     private TasksList tasksList;
 
+    /**
+     * Creates a Ui with a storage and a tasksList object
+     */
     public Ui(Storage storage, TasksList tasksList) {
         this.storage = storage;
         this.tasksList = tasksList;
@@ -40,13 +48,16 @@ public class Ui {
         }
     }
 
+    /**
+     * Starts the terminal UI
+     */
     public void start() {
         // Create a Scanner object to read input from the command line
         Scanner scanner = new Scanner(System.in);
 
         // intro line
-        System.out.println(line + "Hello! I'm Alexis\n" +
-                "What can I do for you?\n" + line);
+        System.out.println(line + "Hello! I'm Alexis\n"
+                + "What can I do for you?\n" + line);
 
         // Infinite loop to continuously echo input
         while (scanner.hasNextLine()) {
@@ -54,48 +65,48 @@ public class Ui {
             String input = scanner.nextLine();
 
             // Exit condition
-            if (actionsEnum.bye.name().equalsIgnoreCase(input)) {
+            if (ActionsEnum.bye.name().equalsIgnoreCase(input)) {
                 storage.save();
                 System.out.println(line + "Bye. Hope to see you again soon!\n" + line);
                 break;
                 // display list condition
-            } else if (actionsEnum.list.name().equalsIgnoreCase(input)) {
-                    System.out.println(line + "Here are the tasks in your list:\n" +
-                            this.tasksList.toString() + line);
+            } else if (ActionsEnum.list.name().equalsIgnoreCase(input)) {
+                System.out.println(line + "Here are the tasks in your list:\n"
+                        + this.tasksList.toString() + line);
             } else {
                 // mark/unmark condition
                 String[] words = input.split(" ");
 
-                if (actionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
+                if (ActionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
                     String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
-                    System.out.println(line + "Here are the matching tasks in your list:\n" +
-                            this.tasksList.search(searchString) + line  qq);
-                } else if (words.length == 2 && isInteger(words[1])) {  // case of mark/unmark/delete
-                    if (actionsEnum.mark.name().equalsIgnoreCase(words[0])) {
+                    System.out.println(line + "Here are the matching tasks in your list:\n"
+                            + this.tasksList.search(searchString) + line);
+                } else if (words.length == 2 && isInteger(words[1])) { // case of mark/unmark/delete
+                    if (ActionsEnum.mark.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);
                         try {
                             Task task = tasksList.markTask(pos);
-                            System.out.println(line + "Nice! I've marked this task as done:\n" +
-                                    task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
+                            System.out.println(line + "Nice! I've marked this task as done:\n"
+                                    + task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
                         } catch (InvalidPosException e) {
                             System.out.println(Ui.invalid);
                         }
-                    } else if (actionsEnum.unmark.name().equalsIgnoreCase(words[0])) {
+                    } else if (ActionsEnum.unmark.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);
                         try {
                             Task task = tasksList.unmarkTask(pos);
-                            System.out.println(line + "OK, I've marked this task as not done yet:\n" +
-                                    task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
+                            System.out.println(line + "OK, I've marked this task as not done yet:\n"
+                                    + task.getStatusIcon() + " " + task.getDescription() + "\n" + line);
                         } catch (InvalidPosException e) {
                             System.out.println(Ui.invalid);
                         }
-                    } else if (actionsEnum.delete.name().equalsIgnoreCase(words[0])) {
+                    } else if (ActionsEnum.delete.name().equalsIgnoreCase(words[0])) {
                         int pos = Integer.parseInt(words[1]);
                         try {
                             Task task = tasksList.deleteTask(pos);
                             System.out.println(line + "Noted. I've removed this task: \n"
-                                    + task.toString() + "\nNow you have " + this.tasksList.getSize() + " tasks in the list.\n"
-                                    + line);
+                                    + task.toString() + "\nNow you have " + this.tasksList.getSize()
+                                    + " tasks in the list.\n" + line);
                         } catch (InvalidPosException e) {
                             System.out.println(Ui.invalid);
                         }
@@ -111,7 +122,7 @@ public class Ui {
 
                     Task task = new Task("0", "dummy");
 
-                    if (taskTypeEnum.todo.name().equalsIgnoreCase(taskType)) {
+                    if (TaskTypeEnum.todo.name().equalsIgnoreCase(taskType)) {
                         try {
                             task = new Todo("0", description);
                             this.tasksList.addTask(task);
@@ -119,17 +130,13 @@ public class Ui {
                             System.out.println(line + e.getMessage() + "\n" + line);
                             continue;
                         }
-                    }
-                    // Handle 'deadline' task type
-                    else if (taskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
+                    } else if (TaskTypeEnum.deadline.name().equalsIgnoreCase(taskType)) {
                         String[] byArr = taskString[1].split(" ");
                         String by = String.join(" ", Arrays.copyOfRange(byArr, 1, byArr.length));
 
                         task = new Deadline("0", description, by);
                         this.tasksList.addTask(task);
-                    }
-                    // Handle 'event' task type
-                    else if (taskTypeEnum.event.name().equalsIgnoreCase(taskType)) {
+                    } else if (TaskTypeEnum.event.name().equalsIgnoreCase(taskType)) {
                         String[] fromArr = taskString[1].split(" ");
                         String from = String.join(" ", Arrays.copyOfRange(fromArr, 1, fromArr.length));
 
@@ -138,17 +145,15 @@ public class Ui {
 
                         task = new Event("0", description, from, to);
                         this.tasksList.addTask(task);
-                    }
-                    // Invalid task type
-                    else {
+                    } else {
                         System.out.println(Ui.invalid);
                         continue;
                     }
 
                     // print task added message
                     System.out.println(line + "Got it. I've added this task: \n"
-                            + task + "\nNow you have " + this.tasksList.getSize() + " tasks in the list.\n"
-                            + line);
+                            + task + "\nNow you have " + this.tasksList.getSize()
+                            + " tasks in the list.\n" + line);
                 }
             }
         }

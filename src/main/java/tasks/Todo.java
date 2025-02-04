@@ -1,6 +1,6 @@
-package Tasks;
+package tasks;
 
-import AlexisExceptions.ToDoException;
+import alexis.exceptions.ToDoException;
 
 /**
  * Represents a todo task.

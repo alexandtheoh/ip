@@ -3,3 +3,4 @@ T|0|return book
 T|1|do homework
 T|0|borrow book
 D|1|return book|Sunday
+T|0|hi

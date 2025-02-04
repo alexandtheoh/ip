@@ -3,6 +3,11 @@ plugins {
     application
     java
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("checkstyle")
+}
+
+checkstyle {
+    toolVersion = "10.2"
 }
 
 repositories {

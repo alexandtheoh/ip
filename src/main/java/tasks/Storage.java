@@ -1,22 +1,33 @@
-package Tasks;
+package tasks;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * Represents a the storage class for tasks list
+ * A {@code Storage} interacts with the storage file, performs reads and writes
+ */
 
 public class Storage {
-    private enum taskTypeEnum {
+    private enum TaskTypeEnum {
         T, D, E
     }
 
     private String filePath;
     private TasksList tasksList;
+
     public Storage(String filePath) {
         this.filePath = filePath;
     }
-    // load
+
+    /**
+     * loads the save from filepath provided
+     *
+     * @return is a tasksList object derived from the save .txt file
+     */
     public TasksList loadSave() {
         this.tasksList = new TasksList();
 
@@ -27,13 +38,13 @@ public class Storage {
                     String taskString = scanner.nextLine();
 
                     String[] taskStringArr = taskString.split("\\|");
-                    if (taskTypeEnum.T.name().equals(taskStringArr[0])) {
+                    if (TaskTypeEnum.T.name().equals(taskStringArr[0])) {
                         Task todo = new Todo(taskStringArr[1], taskStringArr[2]);
                         tasksList.addTask(todo);
-                    } else if (taskTypeEnum.D.name().equals(taskStringArr[0])) {
+                    } else if (TaskTypeEnum.D.name().equals(taskStringArr[0])) {
                         Task deadline = new Deadline(taskStringArr[1], taskStringArr[2], taskStringArr[3]);
                         tasksList.addTask(deadline);
-                    } else if (taskTypeEnum.E.name().equals(taskStringArr[0])) {
+                    } else if (TaskTypeEnum.E.name().equals(taskStringArr[0])) {
                         Task event = new Event(taskStringArr[1], taskStringArr[2], taskStringArr[3], taskStringArr[4]);
                         tasksList.addTask(event);
                     } else {
@@ -49,11 +60,18 @@ public class Storage {
 
         return tasksList;
     }
-    // save
+
+    /**
+     * saves the tasksList object into a .txt file at the file path provided
+     */
     public void save() {
         writeFile(this.tasksList.toSaveString());
     }
 
+
+    /**
+     * writes the tasksList object into a .txt file at the file path provided
+     */
     private void writeFile(String content) {
         try {
             // create directory

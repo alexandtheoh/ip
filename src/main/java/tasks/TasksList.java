@@ -1,9 +1,14 @@
-package Tasks;
+package tasks;
 
-import AlexisExceptions.ToDoException;
-import AlexisExceptions.InvalidPosException;
 import java.util.ArrayList;
 import java.util.List;
+
+import alexis.exceptions.InvalidPosException;
+
+/**
+ * Represents a tasks list.
+ * A {@code TasksList} contains a list of tasks
+ */
 
 public class TasksList {
     private List<Task> tasks;
@@ -24,7 +29,7 @@ public class TasksList {
     /**
      * Deletes a task from the list
      *
-     * @param is the position of the task to be deleted, InvalidPosException is thrown if pos is out of bounds
+     * @param pos is the position of the task to be deleted, InvalidPosException is thrown if pos is out of bounds
      *
      * @return is the task which was deleted
      */
@@ -42,7 +47,7 @@ public class TasksList {
     /**
      * Marks a task from the list
      *
-     * @param is the position of the task to be marked, InvalidPosException is thrown if pos is out of bounds
+     * @param pos is the position of the task to be marked, InvalidPosException is thrown if pos is out of bounds
      *
      * @return is the task which was marked
      */
@@ -60,7 +65,7 @@ public class TasksList {
     /**
      * Unmarks a task from the list
      *
-     * @param is the position of the task to be unmarked, InvalidPosException is thrown if pos is out of bounds
+     * @param pos is the position of the task to be unmarked, InvalidPosException is thrown if pos is out of bounds
      *
      * @return is the task which was unmarked
      */
@@ -90,6 +95,11 @@ public class TasksList {
         return taskSave.toString();
     }
 
+    /**
+     * Returns a string representation of the TaskList to be used for the terminal output.
+     *
+     * @return Formatted task with completion status and date.
+     */
     public String toString() {
         StringBuilder taskList = new StringBuilder();
         int counter = 1;

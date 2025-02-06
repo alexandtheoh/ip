@@ -25,12 +25,8 @@ public class Alexis {
         ui = new Ui(storage, tasksList);
     }
 
-    public void run() {
-        ui.start();
-    }
-
-    public static void main(String[] args) {
-        new Alexis("data/alexis.txt").run();
+    public String input(String input) {
+        return this.ui.recieveInput(input);
     }
 }
 

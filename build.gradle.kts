@@ -15,23 +15,32 @@ repositories {
     mavenCentral()
 }
 
+val javaFxVersion = "17.0.7"
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     // This dependency is used by the application.
     implementation(libs.guava)
+
+    implementation("org.openjfx:javafx-base:$javaFxVersion")
+    implementation("org.openjfx:javafx-controls:$javaFxVersion")
+    implementation("org.openjfx:javafx-fxml:$javaFxVersion")
+    implementation("org.openjfx:javafx-graphics:$javaFxVersion")
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
 application {
-    mainClass.set("AlexisUi.Alexis")  // Use .set() for Kotlin DSL
+    //mainClass.set("alexis.ui.Alexis")  // for terminal alexis
+    mainClass.set("alexis.fx.Launcher")
 }
 
 tasks.named<Test>("test") {

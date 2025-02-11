@@ -70,7 +70,9 @@ public class Ui {
             return line + "Here are the tasks in your list:\n"
                     + this.tasksList.toString() + line;
         } else if (ActionsEnum.sort.name().equalsIgnoreCase(input)) {
-            return "";
+            tasksList.sort();
+            return line + "I've sorted the tasks in your list alphabetically:\n"
+                    + this.tasksList.toString() + line;
         } else if (ActionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
             String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
             return line + "Here are the matching tasks in your list:\n"

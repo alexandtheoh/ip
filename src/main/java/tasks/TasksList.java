@@ -136,6 +136,9 @@ public class TasksList {
         return this.tasks.size();
     }
 
+    /**
+     * Sorts tasks in alphabetical order
+     */
     public void sort() {
         this.tasks.sort(Comparator.comparing(task -> task.getDescription()));
     }

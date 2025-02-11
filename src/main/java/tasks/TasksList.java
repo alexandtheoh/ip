@@ -1,6 +1,7 @@
 package tasks;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import alexis.exceptions.InvalidPosException;
@@ -133,5 +134,9 @@ public class TasksList {
 
     public int getSize() {
         return this.tasks.size();
+    }
+
+    public void sort() {
+        this.tasks.sort(Comparator.comparing(task -> task.getDescription()));
     }
 }

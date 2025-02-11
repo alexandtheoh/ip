@@ -24,7 +24,7 @@ public class Ui {
     }
 
     private enum ActionsEnum {
-        mark, unmark, delete, bye, list, search
+        mark, unmark, delete, bye, list, search, sort
     }
 
     private Storage storage;
@@ -69,6 +69,8 @@ public class Ui {
         } else if (ActionsEnum.list.name().equalsIgnoreCase(input)) {
             return line + "Here are the tasks in your list:\n"
                     + this.tasksList.toString() + line;
+        } else if (ActionsEnum.sort.name().equalsIgnoreCase(input)) {
+            return "";
         } else if (ActionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
             String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
             return line + "Here are the matching tasks in your list:\n"

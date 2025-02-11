@@ -79,4 +79,9 @@ tasks.shadowJar {
     destinationDirectory.set(file("$buildDir/libs"))
 }
 
+tasks.withType<JavaExec> {
+    enableAssertions = true
+}
+
+
 

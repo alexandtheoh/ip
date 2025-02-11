@@ -102,6 +102,7 @@ public class Ui {
         } else { // add task
             String[] taskString = input.split("/");
             String[] desArr = taskString[0].split(" ");
+
             String taskType = desArr[0];
             String description = String.join(" ", Arrays.copyOfRange(desArr, 1, desArr.length));
 

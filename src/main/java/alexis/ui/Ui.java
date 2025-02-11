@@ -56,6 +56,7 @@ public class Ui {
      */
     public String recieveInput(String input) {
         assert input != null;
+
         // Exit condition
         if (ActionsEnum.bye.name().equalsIgnoreCase(input)) {
             storage.save();

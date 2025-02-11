@@ -55,6 +55,8 @@ public class Ui {
      * @return output string
      */
     public String recieveInput(String input) {
+        assert input != null;
+
         // mark/unmark condition
         String[] words = input.split(" ");
         boolean isSpecificCase = words.length == 2 && isInteger(words[1]);
@@ -68,9 +70,9 @@ public class Ui {
             return line + "Here are the tasks in your list:\n"
                     + this.tasksList.toString() + line;
         } else if (ActionsEnum.search.name().equalsIgnoreCase(words[0])) { // search
-                String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
-                return line + "Here are the matching tasks in your list:\n"
-                        + this.tasksList.search(searchString) + line;
+            String searchString = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
+            return line + "Here are the matching tasks in your list:\n"
+                    + this.tasksList.search(searchString) + line;
         } else if (isSpecificCase && ActionsEnum.mark.name().equalsIgnoreCase(words[0])) { // mark case
             int pos = Integer.parseInt(words[1]);
             try {

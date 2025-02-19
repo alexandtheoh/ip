@@ -16,6 +16,7 @@ repositories {
 }
 
 val javaFxVersion = "17.0.7"
+val javaFxPlatform = "mac-aarch64"
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -24,10 +25,10 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
 
-    implementation("org.openjfx:javafx-base:$javaFxVersion")
-    implementation("org.openjfx:javafx-controls:$javaFxVersion")
-    implementation("org.openjfx:javafx-fxml:$javaFxVersion")
-    implementation("org.openjfx:javafx-graphics:$javaFxVersion")
+    implementation("org.openjfx:javafx-base:$javaFxVersion:$javaFxPlatform")
+    implementation("org.openjfx:javafx-controls:$javaFxVersion:$javaFxPlatform")
+    implementation("org.openjfx:javafx-fxml:$javaFxVersion:$javaFxPlatform")
+    implementation("org.openjfx:javafx-graphics:$javaFxVersion:$javaFxPlatform")
 
 }
 

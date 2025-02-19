@@ -20,6 +20,6 @@ Some example commands you can try:
     - list (lists all the tasks currently)
     - search search_string (returns all tasks whereby the description contains the search_string)
     - bye (performs a save of current tasks to data via txt file
-![Ui.png](docs/image.png)
+![Ui.png](docs/Ui.png)
 
 

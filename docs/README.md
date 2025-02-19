@@ -1,6 +1,6 @@
 # Alexis User Guide
 
-![Ui.png](docs/Ui.png)
+![Ui.png](Ui.png)
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Alexis_. Given below are instructions on how to use it.
 

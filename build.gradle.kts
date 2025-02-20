@@ -16,7 +16,16 @@ repositories {
 }
 
 val javaFxVersion = "17.0.7"
-val javaFxPlatform = "mac-aarch64"
+val osName = System.getProperty("os.name").toLowerCase()
+val arch = System.getProperty("os.arch")
+
+val javaFxPlatform = when {
+    osName.contains("mac") && arch.contains("aarch64") -> "mac-aarch64"
+    osName.contains("mac") -> "mac"
+    osName.contains("win") -> "win"
+    osName.contains("linux") -> "linux"
+    else -> throw GradleException("Unsupported OS: $osName")
+}
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -25,6 +34,7 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
 
+    // JavaFX dependencies for multiple platforms
     implementation("org.openjfx:javafx-base:$javaFxVersion:$javaFxPlatform")
     implementation("org.openjfx:javafx-controls:$javaFxVersion:$javaFxPlatform")
     implementation("org.openjfx:javafx-fxml:$javaFxVersion:$javaFxPlatform")

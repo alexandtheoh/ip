@@ -81,8 +81,8 @@ public class Ui {
             int pos = Integer.parseInt(words[1]);
             try {
                 Task task = tasksList.markTask(pos);
-                return line + "Nice! I've marked this task as done:\n" +
-                        task.getType() + task.getStatusIcon() + " " + task.getDescription() + "\n" + line;
+                return line + "Nice! I've marked this task as done:\n"
+                        + task.getType() + task.getStatusIcon() + " " + task.getDescription() + "\n" + line;
             } catch (InvalidPosException e) {
                 return Ui.invalid;
             }
@@ -90,8 +90,8 @@ public class Ui {
             int pos = Integer.parseInt(words[1]);
             try {
                 Task task = tasksList.unmarkTask(pos);
-                return line + "OK, I've marked this task as not done yet:\n" +
-                        task.getType()+ task.getStatusIcon() + " " + task.getDescription() + "\n" + line;
+                return line + "OK, I've marked this task as not done yet:\n"
+                        + task.getType() + task.getStatusIcon() + " " + task.getDescription() + "\n" + line;
             } catch (InvalidPosException e) {
                 return Ui.invalid;
             }
